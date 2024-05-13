@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider with Answers and Calculator</title>
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Reset default margin and padding */
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Custom CSS */
+        .owl-carousel {
+            width: 80%;
+            margin: 0 auto;
+        }
+        
+        .owl-item {
+            padding: 20px;
+        }
+        
+        .slide {
+            background: #f9f9f9;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h2 {
+            margin-top: 0;
+        }
+        
+        /* Calculator form styles */
+        .calculator {
+            margin-top: 30px;
+        }
+        .calculator label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .calculator input, .calculator select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .calculator button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #0056b3;
+        }
+        .calculator output {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="owl-carousel owl-theme">
+    <div class="item">
+        <div class="slide">
+            <h2>Repaint and Reflow</h2>
+            <p>Repaint and reflow are two processes that occur when changes are made to a webpage's layout or style. Repaint involves updating the visual appearance of elements without affecting their layout, while reflow involves recalculating the layout of elements based on changes to their dimensions or positions.</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="slide">
+            <h2>JavaScript and Page Load Speed/Performance</h2>
+            <p>JavaScript can impact page load speed and performance by adding extra processing time during page loading and rendering. Poorly optimized JavaScript code can lead to delays in rendering and execution, resulting in slower page load times. However, JavaScript can also improve performance by enabling asynchronous loading of resources and dynamic content updates.</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="slide">
+            <h2>Minification of Script</h2>
+            <p>Minification is the process of removing unnecessary characters from code, such as comments and whitespace, to reduce file size. This results in faster downloads and improved loading times for web pages. Minification also helps to obfuscate the code, making it harder for others to reverse engineer or modify.</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="slide">
+            <h2>JavaScript Web Worker</h2>
+            <p>A JavaScript Web Worker is a background script that runs separately from the main execution thread of a web page. Web Workers allow for concurrent execution of scripts without blocking the main thread, enabling tasks to be performed in the background without affecting the user interface responsiveness.</p>
+        </div>
+    </div>
+    <div class="item">
+        <div class="slide">
+            <h2>Calculator</h2>
+            <div class="calculator">
+                <label for="num1">Number 1:</label>
+                <input type="number" id="num1" value="0">
+                <label for="operator">Operator:</label>
+                <select id="operator">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+                <label for="num2">Number 2:</label>
+                <input type="number" id="num2" value="0">
+                <button onclick="performCalculation()">Calculate</button>
+                <output id="result">The result is: 0</output>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Owl Carousel JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- Custom JS -->
+<script>
+    $(document).ready(function(){
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            items:1
+        });
+    });
+    
+    function calculate(num1, operator, num2) {
+        switch(operator) {
+            case '+':
+                return num1 + num2;
+            case '-':
+                return num1 - num2;
+            case '*':
+                return num1 * num2;
+            case '/':
+                if(num2 != 0) {
+                    return num1 / num2;
+                } else {
+                    return "Error: Division by zero is not allowed.";
+                }
+            default:
+                return "Error: Invalid operator.";
+        }
+    }
+    
+    function performCalculation() {
+        var num1 = parseFloat(document.getElementById('num1').value);
+        var operator = document.getElementById('operator').value;
+        var num2 = parseFloat(document.getElementById('num2').value);
+        var result = calculate(num1, operator, num2);
+        document.getElementById('result').textContent = "The result is: " + result;
+    }
+</script>
+
+</body>
+</html>
